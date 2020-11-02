@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html 
+xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Banque</title>
+</head>
+<body>
+
+          <header>
+			    <div class="navbar navbar-inverse">
+			        <div class="container-fluid">
+						<ul class="nav navbar-nav">
+						     <li ><a th:href="@{/listofcompte}" sec:authorize="hasRole('ROLE_ADMIN')">Liste des comptes</a></li>
+							 <li ><a th:href="@{/comptes}">Compte</a></li>
+							 <li ><a th:href="@{/clients}" sec:authorize="hasRole('ROLE_ADMIN')">List des Clients</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+				                <li>
+				                    <a th:href="@{/logout}" >Logout
+				                    </a>
+				                </li>
+				       </ul>
+				    </div>
+			    </div>
+          </header>
+  
+		  <section layout:fragment="content">
+		  </section>
+  
+		  <footer class="navbar-fixed-bottom">
+		     <hr/>
+		        <div class="container">
+		          <small>
+		            Copyright @2020
+		          </small>
+		        </div>
+		  </footer>
+
+</body>
+</html>

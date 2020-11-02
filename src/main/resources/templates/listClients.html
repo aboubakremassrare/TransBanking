@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+layout:decorator="partielview/layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Banque</title>
+
+</head>
+<body>
+
+     <div class="space"></div>
+     <div layout:fragment="content">
+          <div class="container col-md-8 col-md-offset-2" >	
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-plus"></i></button>
+           				<br/>    
+           				<br/>     
+				          <div class="panel panel-primary" >
+								  <div class="panel-heading">Les clients de la banque</div>
+								     <div class="panel-body">
+								        <table class="table table-striped">
+									         <tr>
+									           <th>Identifiant</th>
+									           <th>Nom</th>
+									           <th>Email</th>
+								
+									         </tr>
+									                 
+									         <tr th:each="cl:${listClients}">
+									           <td th:text="${cl.code}"></td>
+									           <td th:text="${cl.nom}"></td>
+									           <td th:text="${cl.email}"></td>
+									            <td><a  onclick="return confirm('Etes vous sure ?')"
+									            th:href="@{/clients/delete(id=${cl.code},page=${pageCourante},size=${size})}">
+									            <i class="fa fa-trash"></i></a></td>
+									           <td><a th:href="@{/clients/edit(id=${cl.code})}"><i class="fa fa-pencil"></i></a></td>
+									         </tr>									  
+							         	</table>
+									   
+									 </div>
+										 <div>
+										    <ul class="nav nav-pills">
+										        <li th:class="${pageCourante}==${status.index}?'active':''"  th:each="pg,status:${pages}">
+										          <a th:href="@{/clients(page=${status.index},size=${size})}" th:text="${status.index}" ></a>
+										        </li>
+										    </ul>
+										 </div>
+										 
+				        </div>
+           
+           </div>
+           
+           
+           <!--  ------------------------------>
+           
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title" id="exampleModalLabel">Ajouter un client</h4>
+					      </div>
+					      <div class="modal-body">
+					   	       	     <form th:action="@{/clients/save}" method="post">
+							        
+											          <div class="form-group">
+											             <label class="control-label">Client</label>
+											             <input type="text" name="nom" class="form-control" th:value="${client.nom}" required/>				             
+											          </div>
+											          
+											          <div class="form-group">
+											             <label class="control-label">Email</label>
+											             <input type="text" name="email" class="form-control" th:value="${client.email}" required/>				             
+											          </div>
+											          
+											            <div class="modal-footer">
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													        <button type="submit" class="btn btn-primary">Ajouter</button>
+													    </div>
+							          </form>
+					      </div>
+					    
+					    </div>
+					  </div>
+					</div>
+           
+           
+           
+           
+           
+     </div>
+
+
+</body>
+
+</html>

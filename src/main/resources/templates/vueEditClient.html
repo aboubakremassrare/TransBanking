@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="partielview/layout">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Modifier un client </title>
+</head>
+<body>
+
+			<div class="container col-md-8 col-xs-12 col-md-offset-2" layout:fragment="content">
+			   <div class="panel panel-primary">
+			   
+					    <div class="panel-heading">Modifier un client</div>
+					     <div class="panel-body">
+					     
+					     
+				       	     <form th:action="@{/clients/save}" method="post">
+				       	        
+				       	        
+				       	          <div class="form-group">
+						             <input type="hidden" name="code" class="form-control" th:value="${client.code}" required/>				             
+						          </div>
+					        					        
+						          <div class="form-group">
+						             <label class="control-label">Client</label>
+						             <input type="text" name="nom" class="form-control" th:value="${client.nom}" required/>				             
+						          </div>
+						          
+						          <div class="form-group">
+						             <label class="control-label">Email</label>
+						             <input type="text" name="email" class="form-control" th:value="${client.email}" required/>				             
+						          </div>
+						          
+			          
+						          <div>
+						            <button type="submit" class="btn btn-primary" >Edit</button>
+						          </div>
+						          
+					         </form>
+						          
+
+					    </div>
+			    </div>
+			
+			</div>
+ 
+
+</body>
+</html>
